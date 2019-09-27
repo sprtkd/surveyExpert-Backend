@@ -1,6 +1,6 @@
 package com.infy.surveyExpert.model;
 
-public class UserModel {
+public class User {
 	private Integer userId;
 	private String emailId;
 	private String name;
