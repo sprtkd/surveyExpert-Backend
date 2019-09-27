@@ -2,23 +2,16 @@ package com.infy.surveyExpert.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.infy.surveyExpert.model.User;
 import com.infy.surveyExpert.repo.UserRepo;
-
-import com.infy.surveyExpert.model.User;
 
 import com.infy.surveyExpert.entity.UserEntity;
-
-import com.infy.surveyExpert.repo.UserRepo;
-
 @Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepo userRepo;
 	
-	@Override
 	public User getUserProfile(Integer userId) throws Exception {
 
 		UserEntity user = userRepo.findByuserId(userId);
@@ -32,5 +25,4 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
-		
 }

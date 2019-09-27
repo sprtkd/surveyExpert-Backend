@@ -19,7 +19,7 @@ public class UserAPI {
 	
 	@Autowired
 	private UserService userService;
-
+	
 	@GetMapping(value = "/getprofile/{userId}")
 	public ResponseEntity<User> getUserProfile(@PathVariable Integer userId) throws Exception {
 		User userModel = userService.getUserProfile(userId);
@@ -30,7 +30,7 @@ public class UserAPI {
 	
 	@RequestMapping(value = "/login/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<String> userLogin(@PathVariable String userId,@RequestBody String password) throws Exception {
-		String message = userService.userLogin(userId,password);
+		String message = userService.login(userId,password);
 		System.out.println(message);
 		ResponseEntity<String> response = new ResponseEntity<String>(message, HttpStatus.OK);
 		return response;
