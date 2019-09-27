@@ -1,5 +1,7 @@
 package com.infy.surveyExpert.model;
 
+import com.infy.surveyExpert.entity.UserEntity;
+
 public class User {
 	private Integer userId;
 	private String emailId;
@@ -37,5 +39,18 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+	public static User toModel(UserEntity u) {
+		User user=new User();
+		user.setEmailId(u.getEmailId());
+		user.setName(u.getName());
+		user.setPassword(u.getPassword());
+		user.setRole(u.getRole());
+		user.setUserId(u.getUserId());
+		
+		
+		
+		return user;
+		
+		
+	}
 }
