@@ -8,4 +8,5 @@ import com.infy.surveyExpert.model.UserModel;
 @Repository
 public interface UserRepo  extends JpaRepository<UserModel,Integer> {
 	UserEntity findByuserId(Integer userId) ;
+	String login(String userId,String password);
 }

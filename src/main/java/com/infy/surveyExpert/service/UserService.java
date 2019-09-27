@@ -4,4 +4,5 @@ import com.infy.surveyExpert.model.UserModel;
 
 public interface UserService {
 	public UserModel getUserProfile(Integer userId) throws Exception;
+	public String login(String userId,String password);
 }
