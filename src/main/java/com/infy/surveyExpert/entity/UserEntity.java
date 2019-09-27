@@ -3,11 +3,9 @@ package com.infy.surveyExpert.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 @Entity
 @Table(name="users")
 public class UserEntity {
-
 	@Id
 	private String emailId;
 	private String password;
@@ -54,5 +52,5 @@ public class UserEntity {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
 }
