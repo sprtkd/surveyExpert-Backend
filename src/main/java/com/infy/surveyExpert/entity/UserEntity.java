@@ -6,11 +6,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 public class UserEntity {
-	@Id
+	
 	private String emailId;
 	private String password;
 	private String name;
-	private Integer userId;
+	
+	@Id
+	private Integer id;
 	private String role;
 	
 	public String getEmailId() {
@@ -38,11 +40,11 @@ public class UserEntity {
 	}
 
 	public Integer getUserId() {
-		return userId;
+		return id;
 	}
 	
 	public void setUserId(Integer userId) {
-		this.userId = userId;
+		this.id = userId;
 	}
 	
 	public String getRole() {

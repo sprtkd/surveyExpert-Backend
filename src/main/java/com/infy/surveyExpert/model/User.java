@@ -46,9 +46,7 @@ public class User {
 		user.setPassword(u.getPassword());
 		user.setRole(u.getRole());
 		user.setUserId(u.getUserId());
-		
-		
-		
+			
 		return user;
 		
 		
