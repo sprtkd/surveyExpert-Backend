@@ -19,15 +19,9 @@ public class UserAPI {
 	@Autowired
 	private UserService userService;
 	
-<<<<<<< HEAD
 	@RequestMapping(value = "/getprofile/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<User> getUserProfile(@PathVariable Integer userId) throws Exception {
 		User userModel = userService.getUserProfile(userId);
-=======
-	@GetMapping(value = "/getprofile/{userId}")
-	public ResponseEntity<UserModel> getUserProfile(@PathVariable Integer userId) throws Exception {
-		UserModel userModel = userService.getUserProfile(userId);
->>>>>>> branch 'master' of https://github.com/sprtkd/surveyExpert-Backend.git
 		System.out.println(userModel);
 		ResponseEntity<User> response = new ResponseEntity<User>(userModel, HttpStatus.OK);
 		return response;
