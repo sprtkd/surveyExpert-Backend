@@ -89,3 +89,4 @@ CREATE TABLE DESCRIPTIVE_ANSWERS (
 
 INSERT INTO USERS values ("D","A","U",9,"O");
 insert into survey values(1,1,'2011-12-18 13:17:17','2011-12-18 13:17:17',1);
+insert into organizer values(1,1);
