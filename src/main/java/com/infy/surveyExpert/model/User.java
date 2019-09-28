@@ -12,33 +12,43 @@ public class User {
 	public Integer getUserId() {
 		return userId;
 	}
+	
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
+	
 	public String getEmailId() {
 		return emailId;
 	}
+	
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	public String getRole() {
 		return role;
 	}
+	
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
 	public static User toModel(UserEntity u) {
 		User user=new User();
 		user.setEmailId(u.getEmailId());
@@ -46,11 +56,6 @@ public class User {
 		user.setPassword(u.getPassword());
 		user.setRole(u.getRole());
 		user.setUserId(u.getUserId());
-		
-		
-		
 		return user;
-		
-		
 	}
 }
