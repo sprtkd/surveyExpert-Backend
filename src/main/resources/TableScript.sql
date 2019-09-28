@@ -92,3 +92,4 @@ insert into survey values(1,1,'2011-12-18 13:17:17','2011-12-18 13:17:17',1);
 insert into organizer values(1,1);
 insert into participant values(1,1);
 insert into survey_attempted values(1,1,1,'2011-12-18 13:17:17',1);
+insert into  question values(1,1,'descript','what is your name');

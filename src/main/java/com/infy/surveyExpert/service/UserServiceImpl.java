@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.infy.surveyExpert.entity.DiscreteAnswerableEntity;
 import com.infy.surveyExpert.entity.ParticipantEntity;
 import com.infy.surveyExpert.entity.QuestionEntity;
 import com.infy.surveyExpert.entity.SurveyAttemptedEntity;
@@ -21,6 +22,8 @@ import com.infy.surveyExpert.model.Survey;
 import com.infy.surveyExpert.model.SurveyAttempted;
 import com.infy.surveyExpert.model.User;
 import com.infy.surveyExpert.repo.DescriptiveAnswerableRepo;
+
+import com.infy.surveyExpert.repo.DiscreteAnswerableRepo;
 import com.infy.surveyExpert.repo.ParticipantRepo;
 import com.infy.surveyExpert.repo.QuestionRepo;
 import com.infy.surveyExpert.repo.SurveyAttemptedRepo;
@@ -39,11 +42,17 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private DescriptiveAnswerableRepo descriptiveAnswerableRepo;
+	
 	@Autowired
+	private DiscreteAnswerableRepo discreteAnswerableRepo;
+	
+	
+		@Autowired
 	private SurveyAttemptedRepo surveyAttemptedrep;
 	@Autowired
 	private ParticipantRepo participantRepo;
-	@Autowired
+
+@Autowired
 	private SurveyRep surveyRep;
 
 	public User getUserProfile(Integer userId) throws Exception {
@@ -125,4 +134,60 @@ public class UserServiceImpl implements UserService {
 	
 	
 
+	public List<Question> getAllQuestionsInSurvey(Integer surveyId) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<SurveyEntity> surveyEntity = surveyRep.findById(surveyId);
+		SurveyEntity surveyEntity2 = new SurveyEntity();
+		if (surveyEntity.isPresent()) {
+			surveyEntity2=surveyEntity.get();
+		}
+		List<QuestionEntity> questionEntities = questionRepo.findBySurvey(surveyEntity2);
+		List<Question> questions = new ArrayList<>();
+		for (QuestionEntity q:questionEntities) {
+			questions.add(QuestionEntity.toModel(q));
+		}
+		return questions;
+	}
+
+	@Override
+	public List<DiscreteAnswerable> getAllDiscreteAnswerablesInSurvey(Integer surveyId) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<SurveyEntity> surveyEntity = surveyRep.findById(surveyId);
+		SurveyEntity surveyEntity2 = new SurveyEntity();
+		if (surveyEntity.isPresent()) {
+			surveyEntity2=surveyEntity.get();
+		}
+		List<QuestionEntity> questionEntities = questionRepo.findBySurvey(surveyEntity2);
+		List<Question> questions = new ArrayList<>();
+		List<DiscreteAnswerable> discreteAnswerables = new ArrayList<>();
+		for (QuestionEntity q:questionEntities) {
+			Question question = QuestionEntity.toModel(q);
+			questions.add(question);
+			if (q.getQuestionType()=="1") {
+				discreteAnswerables.add(DiscreteAnswerableEntity.toModel(discreteAnswerableRepo.findByQuestion(q)));
+			}
+		}
+		return discreteAnswerables;
+	}
+
+	@Override
+	public List<DescriptiveAnswerable> getAllDescriptiveAnswerablesInSurvey(Integer surveyId) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<SurveyEntity> surveyEntity = surveyRep.findById(surveyId);
+		SurveyEntity surveyEntity2 = new SurveyEntity();
+		if (surveyEntity.isPresent()) {
+			surveyEntity2=surveyEntity.get();
+		}
+		List<QuestionEntity> questionEntities = questionRepo.findBySurvey(surveyEntity2);
+		List<Question> questions = new ArrayList<>();
+		List<DescriptiveAnswerable> descriptiveAnswerables = new ArrayList<>();
+		for (QuestionEntity q:questionEntities) {
+			Question question = QuestionEntity.toModel(q);
+			questions.add(question);
+			if (q.getQuestionType()=="2") {
+//				descriptiveAnswerables.add(DescriptiveAnswerableEntity.toModel(descriptiveAnswerableRepo.findByQuestion(q)));
+			}
+		}
+		return null;
+	}
 }
