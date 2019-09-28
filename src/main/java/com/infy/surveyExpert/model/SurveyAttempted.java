@@ -4,34 +4,34 @@ import java.time.LocalDateTime;
 
 public class SurveyAttempted {
 
-	private Integer organizerId;
-	private Integer surveyId;
-	private Integer participantId;
+	private Organizer organizer;
+	private Survey survey;
+	private Participant participant;
 	private LocalDateTime attemptedTimestamp;
 	private Integer id;
 	
-	public Integer getOrganizerId() {
-		return organizerId;
+	public Organizer getOrganizerId() {
+		return organizer;
 	}
 	
-	public void setOrganizerId(Integer organizerId) {
-		this.organizerId = organizerId;
+	public void setOrganizerId(Organizer organizerId) {
+		this.organizer = organizerId;
 	}
 	
-	public Integer getSurveyId() {
-		return surveyId;
+	public Survey getSurveyId() {
+		return survey;
 	}
 	
-	public void setSurveyId(Integer surveyId) {
-		this.surveyId = surveyId;
+	public void setSurveyId(Survey surveyId) {
+		this.survey = surveyId;
 	}
 	
-	public Integer getParticipantId() {
-		return participantId;
+	public Participant getParticipantId() {
+		return participant;
 	}
 	
-	public void setParticipantId(Integer participantId) {
-		this.participantId = participantId;
+	public void setParticipantId(Participant participantId) {
+		this.participant = participantId;
 	}
 	
 	public LocalDateTime getAttemptedTimestamp() {

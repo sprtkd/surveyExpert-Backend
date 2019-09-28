@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.infy.surveyExpert.model.Survey;
+import com.infy.surveyExpert.model.SurveyAttempted;
 import com.infy.surveyExpert.model.User;
 import com.infy.surveyExpert.service.UserService;
 
@@ -40,6 +41,17 @@ public class UserAPI {
 		ResponseEntity response = new ResponseEntity<>(li, HttpStatus.OK);
 		return response;
 	}
+	@GetMapping(value = "/getAllSurveysAttempted/{userId}")
+	public ResponseEntity getAllSurveysAttempted(@PathVariable Integer userId) throws Exception
+	{
+		
+		List<SurveyAttempted> li=userService.getAllAttemptedSurveyByUser(userId);
+		
+		ResponseEntity response = new ResponseEntity<>(li, HttpStatus.OK);
+		return response;
+	}
 	
+	
+
 	
 }
