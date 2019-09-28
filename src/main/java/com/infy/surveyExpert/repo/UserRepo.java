@@ -9,7 +9,7 @@ import com.infy.surveyExpert.entity.UserEntity;
 import com.infy.surveyExpert.model.User;
 
 
-public interface UserRepo  extends JpaRepository<User,Integer> {
-	Optional<User> findById(Integer userId) ;
+public interface UserRepo  extends JpaRepository<UserEntity,Integer> {
+	Optional<UserEntity> findById(Integer userId) ;
 	
 }

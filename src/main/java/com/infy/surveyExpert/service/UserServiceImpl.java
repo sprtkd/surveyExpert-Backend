@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	
 	public User getUserProfile(Integer userId) throws Exception {
 
-		Optional<User> user = userRepo.findById(userId);
+		Optional<UserEntity> user = userRepo.findById(userId);
 //		return User.toModel(user);
 		return new User();
 
