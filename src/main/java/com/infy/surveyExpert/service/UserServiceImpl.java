@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 	private SurveyAttemptedRepo surveyAttemptedrep;
 	@Autowired
 	private ParticipantRepo participantRepo;
-
+@Autowired
 	private SurveyRep surveyRep;
 
 	public User getUserProfile(Integer userId) throws Exception {
