@@ -48,8 +48,9 @@ public class UserServiceImpl implements UserService {
 
 	}
 	
-	public List<Question> getAllQuestion(Integer surveyId) throws Exception{
-		List<QuestionEntity> questionEntity = questionRepo.findBySurveyId(surveyId);
+	public List<Question> getAllQuestion(Survey survey) throws Exception{
+		
+		List<QuestionEntity> questionEntity = questionRepo.findBySurvey(survey);
 		List<Question> qlist = new ArrayList<Question>();
 		for(QuestionEntity q: questionEntity)
 		{

@@ -12,7 +12,7 @@ public interface UserService {
 	
 	public User getUserProfile(Integer userId) throws Exception;
 	
-	public List<Question> getAllQuestion(Integer surveyId) throws Exception;
+	public List<Question> getAllQuestion(Survey survey) throws Exception;
 
 	public List<Survey> getAllSurveys() throws Exception;
 	
