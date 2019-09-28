@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.infy.surveyExpert.model.DescriptiveAnswerable;
+import com.infy.surveyExpert.model.DiscreteAnswerable;
 import com.infy.surveyExpert.model.Question;
 import com.infy.surveyExpert.model.Survey;
 import com.infy.surveyExpert.model.SurveyAttempted;
@@ -60,5 +62,17 @@ public class UserAPI {
 		return response;
 	}
 
+	@GetMapping(value = "/getAllDiscreteAnswerablesInSurvey/{surveyId}")
+	public ResponseEntity getAllDiscreteAnswerablesInSurvey(@PathVariable Integer surveyId) throws Exception {
+		List<DiscreteAnswerable> discreteAnswerables = userService.getAllDiscreteAnswerablesInSurvey(surveyId);
+		ResponseEntity response = new ResponseEntity(discreteAnswerables, HttpStatus.OK);
+		return response;
+	}
 	
+	@GetMapping(value = "/getAllDescriptiveAnswerablesInSurvey/{surveyId}")
+	public ResponseEntity getAllDescriptiveAnswerablesInSurvey(@PathVariable Integer surveyId) throws Exception {
+		List<DescriptiveAnswerable> descriptiveAnswerables = userService.getAllDescriptiveAnswerablesInSurvey(surveyId);
+		ResponseEntity response = new ResponseEntity(descriptiveAnswerables, HttpStatus.OK);
+		return response;
+	}
 }
