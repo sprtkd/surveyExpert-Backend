@@ -7,5 +7,6 @@ import com.infy.surveyExpert.entity.UserEntity;
 import com.infy.surveyExpert.model.UserModel;
 @Repository
 public interface UserRepo  extends JpaRepository<UserModel,Integer> {
-	UserEntity findByuserId(Integer userId) ;
+	UserEntity findByUserId(Integer userId) ;
+	
 }

@@ -14,8 +14,9 @@ public class UserServiceImpl implements UserService {
 	private UserRepo userRepo;
 	
 	public UserModel getUserProfile(Integer userId) throws Exception {
-		UserEntity user = userRepo.findByuserId(userId);
-		return new UserModel();
+		UserEntity user = userRepo.findByUserId(userId);
+		return UserModel.toModel(user);
+		
 	}
 		
 }
