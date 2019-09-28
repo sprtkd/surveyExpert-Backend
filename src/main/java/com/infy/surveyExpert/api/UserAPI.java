@@ -27,12 +27,13 @@ public class UserAPI {
 		ResponseEntity<User> response = new ResponseEntity<User>(userModel, HttpStatus.OK);
 		return response;
 	}
+//	@GetMapping(value = "/getAllSurveys")
+//	public ResponseEntity<User> getAllSurveys() throws Exception
+//	{
+//		
+//		
+//		
+//	}
 	
-	@RequestMapping(value = "/login/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<String> userLogin(@PathVariable String userId,@RequestBody String password) throws Exception {
-		String message = userService.login(userId,password);
-		System.out.println(message);
-		ResponseEntity<String> response = new ResponseEntity<String>(message, HttpStatus.OK);
-		return response;
-	}
+	
 }

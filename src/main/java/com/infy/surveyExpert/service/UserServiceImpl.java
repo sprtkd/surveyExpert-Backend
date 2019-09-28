@@ -19,16 +19,21 @@ public class UserServiceImpl implements UserService {
 	
 	public User getUserProfile(Integer userId) throws Exception {
 
-		Optional<UserEntity> user = userRepo.findById(userId);
-//		return User.toModel(user);
-		return new User();
+
+		Optional<UserEntity> useren = userRepo.findById(userId);
+		if(useren.isPresent()) {
+			return User.toModel(useren.get());
+		}
+		
+		else {
+			throw new Exception("NO Data Found");
+		}
+
 
 	}
 	
-	@Override
-	public String login(String userId,String password) {
-		return null;
+	
 		
-	}
+	
 	
 }

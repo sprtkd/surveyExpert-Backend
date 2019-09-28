@@ -3,6 +3,7 @@ package com.infy.surveyExpert.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
 @Table(name="users")
 public class UserEntity {
