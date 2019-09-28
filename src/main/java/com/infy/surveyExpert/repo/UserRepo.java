@@ -12,4 +12,5 @@ import com.infy.surveyExpert.model.User;
 public interface UserRepo  extends JpaRepository<UserEntity,Integer> {
 	Optional<UserEntity> findById(Integer userId) ;
 	
+	
 }
