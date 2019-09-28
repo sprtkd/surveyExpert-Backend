@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.infy.surveyExpert.entity.DescriptiveAnswerableEntity;
+import com.infy.surveyExpert.entity.DiscreteAnswerableEntity;
 import com.infy.surveyExpert.entity.ParticipantEntity;
 import com.infy.surveyExpert.entity.QuestionEntity;
 import com.infy.surveyExpert.entity.SurveyAttemptedEntity;
@@ -160,9 +162,9 @@ public class UserServiceImpl implements UserService {
 			Question question = QuestionEntity.toModel(q);
 			questions.add(question);
 			if (q.getQuestionType()=="2") {
-				descriptiveAnswerables.add(DescriptiveAnswerableEntity.toModel(descriptiveAnswerableRepo.findByQuestion(q)));
+//				descriptiveAnswerables.add(DescriptiveAnswerableEntity.toModel(descriptiveAnswerableRepo.findByQuestion(q)));
 			}
 		}
-		return descriptiveAnswerables;
+		return null;
 	}
 }
