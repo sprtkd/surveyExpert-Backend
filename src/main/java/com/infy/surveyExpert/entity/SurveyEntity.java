@@ -10,6 +10,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.infy.surveyExpert.model.Organizer;
+import com.infy.surveyExpert.model.Survey;
+import com.infy.surveyExpert.model.User;
+
 @Entity
 @Table(name="survey")
 public class SurveyEntity {
@@ -61,6 +65,35 @@ public class SurveyEntity {
 	
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	
+	public static Survey toModel(SurveyEntity s) {
+		Survey sur=new Survey();
+		sur.setEndDate(s.getEndDate());
+		sur.setId(s.getId());
+		Organizer o=new Organizer();
+		if(s.getOrganizer()!=null) {
+			OrganizerEntity or=s.getOrganizer();
+			
+			o.setDummy(or.getDummy());
+			User  u=new User();
+			if(or.getUser()!=null) {
+				
+				u.setEmailId(or.getUser().getEmailId());
+				u.setName(or.getUser().getName());
+				u.setUserId(or.getUser().getUserId());
+				u.setPassword(or.getUser().getPassword());
+				u.setRole(or.getUser().getRole());
+			}
+			o.setUser(u);
+			
+			
+			
+		}
+		sur.setOrganizer(o);
+		sur.setStatus(s.getStatus());
+		sur.setStartDate(s.getStartDate());
+		return sur;
 	}
 }
 
