@@ -46,4 +46,6 @@ public class Survey {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+	
+	
 }
