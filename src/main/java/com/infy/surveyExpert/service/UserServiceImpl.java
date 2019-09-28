@@ -98,6 +98,22 @@ public class UserServiceImpl implements UserService {
 		 }
 		 return li1;
 	 }
+
+	@Override
+	public List<Question> getAllQuestionsInSurvey(Integer surveyId) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<SurveyEntity> surveyEntity = surveyRep.findById(surveyId);
+		SurveyEntity surveyEntity2 = new SurveyEntity();
+		if (surveyEntity.isPresent()) {
+			surveyEntity2=surveyEntity.get();
+		}
+		List<QuestionEntity> questionEntities = questionRepo.findBySurvey(surveyEntity2);
+		List<Question> questions = new ArrayList<>();
+		for (QuestionEntity q:questionEntities) {
+			questions.add(QuestionEntity.toModel(q));
+		}
+		return questions;
+	}
 	
 	
 
