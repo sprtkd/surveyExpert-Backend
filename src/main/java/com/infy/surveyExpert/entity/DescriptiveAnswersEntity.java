@@ -1,16 +1,11 @@
 package com.infy.surveyExpert.entity;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="discrete_answers")
-public class DiscreteAnswerEntity {
+public class DescriptiveAnswersEntity {
 
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="organizer_id", unique=true)
@@ -23,10 +18,10 @@ public class DiscreteAnswerEntity {
 	private ParticipantEntity participant;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="question_id", unique=true)
-	private DiscreteAnswerableEntity discreteAnswerable1;
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="option_id", unique=true)
-	private DiscreteAnswerableEntity discreteAnswerable2;
+	private DescriptiveAnswerableEntity descriptiveAnswerable;
+	private String answerText;
+	private Integer mediaFileType;
+	private String mediaFileLocation;
 	@Id
 	private Integer id;
 	
@@ -54,27 +49,44 @@ public class DiscreteAnswerEntity {
 		this.participant = participant;
 	}
 	
-	public DiscreteAnswerableEntity getDiscreteAnswerable1() {
-		return discreteAnswerable1;
+	public DescriptiveAnswerableEntity getDescriptiveAnswerable() {
+		return descriptiveAnswerable;
 	}
 	
-	public void setDiscreteAnswerable1(DiscreteAnswerableEntity discreteAnswerable1) {
-		this.discreteAnswerable1 = discreteAnswerable1;
+	public void setDescriptiveAnswerable(DescriptiveAnswerableEntity descriptiveAnswerable) {
+		this.descriptiveAnswerable = descriptiveAnswerable;
 	}
 	
-	public DiscreteAnswerableEntity getDiscreteAnswerable2() {
-		return discreteAnswerable2;
+	public String getAnswerText() {
+		return answerText;
 	}
 	
-	public void setDiscreteAnswerable2(DiscreteAnswerableEntity discreteAnswerable2) {
-		this.discreteAnswerable2 = discreteAnswerable2;
+	public void setAnswerText(String answerText) {
+		this.answerText = answerText;
+	}
+	
+	public Integer getMediaFileType() {
+		return mediaFileType;
+	}
+	
+	public void setMediaFileType(Integer mediaFileType) {
+		this.mediaFileType = mediaFileType;
+	}
+	
+	public String getMediaFileLocation() {
+		return mediaFileLocation;
+	}
+	
+	public void setMediaFileLocation(String mediaFileLocation) {
+		this.mediaFileLocation = mediaFileLocation;
 	}
 	
 	public Integer getId() {
 		return id;
 	}
-
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
 }
