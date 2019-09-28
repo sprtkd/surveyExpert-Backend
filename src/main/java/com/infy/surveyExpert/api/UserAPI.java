@@ -7,12 +7,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.infy.surveyExpert.model.DescriptiveAnswerable;
+import com.infy.surveyExpert.model.DiscreteAnswerable;
+
 import com.infy.surveyExpert.model.Question;
+
 import com.infy.surveyExpert.model.Survey;
 import com.infy.surveyExpert.model.SurveyAttempted;
 import com.infy.surveyExpert.model.User;
@@ -52,6 +57,15 @@ public class UserAPI {
 		return response;
 	}
 	
+
+	@PostMapping(value = "/createSurvey/{userId}")
+	public ResponseEntity<String> createSurvey(@PathVariable Integer userId,@RequestBody List<DescriptiveAnswerable> descriptiveAnswerables) {
+		String message=userService.createSurveyForDescriptive(descriptiveAnswerables);
+		ResponseEntity<String> response = new ResponseEntity<String>(message + ":" ,HttpStatus.OK);
+		return response;
+	}
+	
+
 	@GetMapping(value = "/getAllQuestionsInSurvey/{surveyId}")
 	public ResponseEntity getAllQuestionsInSurvey(@PathVariable Integer surveyId) throws Exception
 	{
@@ -60,5 +74,11 @@ public class UserAPI {
 		return response;
 	}
 
-	
+
+	@GetMapping(value = "/getAllDescriptiveAnswerablesInSurvey/{surveyId}")
+	public ResponseEntity getAllDescriptiveAnswerablesInSurvey(@PathVariable Integer surveyId) throws Exception {
+		List<DescriptiveAnswerable> descriptiveAnswerables = userService.getAllDescriptiveAnswerablesInSurvey(surveyId);
+		ResponseEntity response = new ResponseEntity(descriptiveAnswerables, HttpStatus.OK);
+		return response;
+	}
 }

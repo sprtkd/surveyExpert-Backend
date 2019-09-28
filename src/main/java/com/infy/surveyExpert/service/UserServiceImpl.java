@@ -9,15 +9,21 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.infy.surveyExpert.entity.DiscreteAnswerableEntity;
 import com.infy.surveyExpert.entity.ParticipantEntity;
 import com.infy.surveyExpert.entity.QuestionEntity;
 import com.infy.surveyExpert.entity.SurveyAttemptedEntity;
 import com.infy.surveyExpert.entity.SurveyEntity;
 import com.infy.surveyExpert.entity.UserEntity;
+import com.infy.surveyExpert.model.DescriptiveAnswerable;
+import com.infy.surveyExpert.model.DiscreteAnswerable;
 import com.infy.surveyExpert.model.Question;
 import com.infy.surveyExpert.model.Survey;
 import com.infy.surveyExpert.model.SurveyAttempted;
 import com.infy.surveyExpert.model.User;
+import com.infy.surveyExpert.repo.DescriptiveAnswerableRepo;
+
+import com.infy.surveyExpert.repo.DiscreteAnswerableRepo;
 import com.infy.surveyExpert.repo.ParticipantRepo;
 import com.infy.surveyExpert.repo.QuestionRepo;
 import com.infy.surveyExpert.repo.SurveyAttemptedRepo;
@@ -34,11 +40,18 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private QuestionRepo questionRepo;
 	
+	@Autowired
+	private DescriptiveAnswerableRepo descriptiveAnswerableRepo;
 	
 	@Autowired
+	private DiscreteAnswerableRepo discreteAnswerableRepo;
+	
+	
+		@Autowired
 	private SurveyAttemptedRepo surveyAttemptedrep;
 	@Autowired
 	private ParticipantRepo participantRepo;
+
 @Autowired
 	private SurveyRep surveyRep;
 
@@ -90,7 +103,7 @@ public class UserServiceImpl implements UserService {
 		 System.out.println(u.getName()+"name");
 		 
 		 ParticipantEntity p=participantRepo.findByUser(u1);
-		 System.out.println(p.getUser().getEmailId()+"part");
+		
 		 List<SurveyAttemptedEntity> li= surveyAttemptedrep.findAllByParticipant(p);
 		 List<SurveyAttempted> li1=new ArrayList<SurveyAttempted>();
 		 for(SurveyAttemptedEntity s:li) {
@@ -100,6 +113,27 @@ public class UserServiceImpl implements UserService {
 	 }
 
 	@Override
+	public String createSurveyForDescriptive(List<DescriptiveAnswerable> descriptiveAnswerables) {
+		List<Integer> list=new ArrayList();
+		for(DescriptiveAnswerable descriptiveAnswerable:descriptiveAnswerables) {
+			list.add(descriptiveAnswerableRepo.save(DescriptiveAnswerable.toEntity(descriptiveAnswerable)).getDummy());
+		}
+		String message="survey created successfully with id's:";
+		for(Integer i:list) {
+			message+=" "+i;
+		}
+		return message ;
+		
+	}
+
+	@Override
+	public String createSurveyForDesciptive(List<DiscreteAnswerable> discreteAnswerables) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
 	public List<Question> getAllQuestionsInSurvey(Integer surveyId) throws Exception {
 		// TODO Auto-generated method stub
 		Optional<SurveyEntity> surveyEntity = surveyRep.findById(surveyId);
@@ -114,7 +148,46 @@ public class UserServiceImpl implements UserService {
 		}
 		return questions;
 	}
-	
-	
 
+	@Override
+	public List<DiscreteAnswerable> getAllDiscreteAnswerablesInSurvey(Integer surveyId) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<SurveyEntity> surveyEntity = surveyRep.findById(surveyId);
+		SurveyEntity surveyEntity2 = new SurveyEntity();
+		if (surveyEntity.isPresent()) {
+			surveyEntity2=surveyEntity.get();
+		}
+		List<QuestionEntity> questionEntities = questionRepo.findBySurvey(surveyEntity2);
+		List<Question> questions = new ArrayList<>();
+		List<DiscreteAnswerable> discreteAnswerables = new ArrayList<>();
+		for (QuestionEntity q:questionEntities) {
+			Question question = QuestionEntity.toModel(q);
+			questions.add(question);
+			if (q.getQuestionType()=="1") {
+				discreteAnswerables.add(DiscreteAnswerableEntity.toModel(discreteAnswerableRepo.findByQuestion(q)));
+			}
+		}
+		return discreteAnswerables;
+	}
+
+	@Override
+	public List<DescriptiveAnswerable> getAllDescriptiveAnswerablesInSurvey(Integer surveyId) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<SurveyEntity> surveyEntity = surveyRep.findById(surveyId);
+		SurveyEntity surveyEntity2 = new SurveyEntity();
+		if (surveyEntity.isPresent()) {
+			surveyEntity2=surveyEntity.get();
+		}
+		List<QuestionEntity> questionEntities = questionRepo.findBySurvey(surveyEntity2);
+		List<Question> questions = new ArrayList<>();
+		List<DescriptiveAnswerable> descriptiveAnswerables = new ArrayList<>();
+		for (QuestionEntity q:questionEntities) {
+			Question question = QuestionEntity.toModel(q);
+			questions.add(question);
+			if (q.getQuestionType()=="2") {
+//				descriptiveAnswerables.add(DescriptiveAnswerableEntity.toModel(descriptiveAnswerableRepo.findByQuestion(q)));
+			}
+		}
+		return null;
+	}
 }

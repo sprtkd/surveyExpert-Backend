@@ -2,6 +2,8 @@ package com.infy.surveyExpert.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,6 +17,7 @@ public class DescriptiveAnswerableEntity {
 	@JoinColumn(name="question_id")
 	private QuestionEntity question;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer dummy;
 	private Integer mediaFileType;
 	private String mediaFileLocation;
