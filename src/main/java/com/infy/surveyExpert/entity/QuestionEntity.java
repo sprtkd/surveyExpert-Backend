@@ -1,10 +1,14 @@
 package com.infy.surveyExpert.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="question")
 public class QuestionEntity {
 
 	@ManyToOne(cascade=CascadeType.ALL)
