@@ -1,5 +1,9 @@
 package com.infy.surveyExpert.entity;
 
-public class UserEntity {
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+public class UserEntity {
+	
+	
 }
