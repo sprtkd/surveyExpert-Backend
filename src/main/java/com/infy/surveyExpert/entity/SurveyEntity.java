@@ -2,6 +2,7 @@ package com.infy.surveyExpert.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,18 +14,14 @@ import javax.persistence.Table;
 @Table(name="survey")
 public class SurveyEntity {
 
-	@OneToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="organizerId", unique=true)
 	private OrganizerEntity organizer;
-	
 	@Id
 	private Integer id;
-	
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private Integer status;
-	
-	
 
 	public OrganizerEntity getOrganizer() {
 		return organizer;

@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
 	
 	public User getUserProfile(Integer userId) throws Exception {
 
+
 		Optional<UserEntity> useren = userRepo.findById(userId);
 		if(useren.isPresent()) {
 			return User.toModel(useren.get());
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
 		else {
 			throw new Exception("NO Data Found");
 		}
+
 
 	}
 	
