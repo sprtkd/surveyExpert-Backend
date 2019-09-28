@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.infy.surveyExpert.model.DescriptiveAnswerable;
 import com.infy.surveyExpert.model.DiscreteAnswerable;
+
 import com.infy.surveyExpert.model.Question;
 import com.infy.surveyExpert.model.Survey;
 import com.infy.surveyExpert.model.SurveyAttempted;
@@ -16,6 +17,11 @@ public interface UserService {
 	public User getUserProfile(Integer userId) throws Exception;
 	
 	public List<SurveyAttempted> getAllAttemptedSurveyByUser(Integer p)throws Exception;
+
+	public String createSurveyForDesciptive(List<DiscreteAnswerable> discreteAnswerables);
+
+	public String createSurveyForDescriptive(List<DescriptiveAnswerable> descriptiveAnswerables);
+
 	public List<Question> getAllQuestionsInSurvey(Integer surveyId) throws Exception;
 	public List<DiscreteAnswerable> getAllDiscreteAnswerablesInSurvey(Integer surveyId) throws Exception;
 	public List<DescriptiveAnswerable> getAllDescriptiveAnswerablesInSurvey(Integer surveyId) throws Exception;
